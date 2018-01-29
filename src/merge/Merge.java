@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package merge;
+import java.util.*;
 
 /**
  *
- * @author Zack
+ * @author Zackery Lavalais
  */
-import java.util.*;
 
 public class Merge {
   public static int[] merge(int[] a,int[] b) {
     int[] result = new int[a.length+b.length];
     int na = 0, nb = 0, nr = 0;
+    
     while(na < a.length && nb < b.length) {
       int diff = a[na] - b[nb];
       if(diff <= 0) {
@@ -27,21 +22,26 @@ public class Merge {
       }
       nr++;
     }
+    
     while(na < a.length) {
       result[nr] = a[na];
       na++;
       nr++;
     }
+    
     while(nb < b.length) {
       result[nr] = b[nb];
       nb++;
       nr++;
     }
+    
     return result;
   }
+  
   public static <T extends Comparable<T>> List<T> merge(List<T> a,List<T> b) {
     List<T> result = new ArrayList<T>();
     int na = 0, nb = 0;
+    
     while(na < a.size() && nb < b.size()) {
       int diff = a.get(na).compareTo(b.get(nb));
       if(diff <= 0) {
@@ -53,17 +53,20 @@ public class Merge {
         result.add(b.get(nb));
         nb++;
       }
-    }       
+    } 
+    
     while(na < a.size()) {
       //result[nr] = a[na];
       result.add(a.get(na));
       na++;
     }
+    
     while(nb < b.size()) {
       //result[nr] = b[nb];
       result.add(b.get(nb));
       nb++;
     }
+    
     return result;
   }
   public static <T extends Comparable<T>> List<T> mergeSort(List<T> li) {
@@ -80,6 +83,7 @@ public class Merge {
     b = mergeSort(b);
     return merge(a,b);
   }
+  
   public static void main(String[] args) {
     Random r = new Random();
     final int n = 5;
@@ -99,6 +103,7 @@ public class Merge {
     List<Integer> re = merge(a,b);
     System.out.println(re);
   }
+  
   public static void main2(String[] args) {
     Random r = new Random();
     final int n = 5;
